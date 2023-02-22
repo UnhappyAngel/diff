@@ -56,7 +56,10 @@ func (d *Differ) diffSliceGeneric(path []string, a, b reflect.Value) error {
 		return nil
 	}
 
-	return d.diffComparative(path, missing, exportInterface(a))
+	// need just change record
+	d.cl.Add(UPDATE, path, a, b)
+	return nil
+	//return d.diffComparative(path, missing, exportInterface(a))
 }
 
 func (d *Differ) diffSliceComparative(path []string, a, b reflect.Value) error {
